@@ -43,6 +43,8 @@
 CTestLogFrame::CTestLogFrame(const wxString& title)
 	: wxFrame(NULL, wxID_ANY, title, wxPoint(-1, -1), wxSize(640, 480))
 {
+	wxString status_str;
+
 	menubar = new wxMenuBar();
 	file = new wxMenu();
 	help = new wxMenu();
@@ -57,7 +59,10 @@ CTestLogFrame::CTestLogFrame(const wxString& title)
 	// Separate the status bar into three fields
 	CreateStatusBar(3);
 	// Place welcome text in the leftmost field
-	SetStatusText(_("Welcome to CTest"), 0);
+	status_str.Append(_("Welcome to "));
+	status_str.Append(_(PACKAGE_NAME));
+	status_str.Append(_("!"));
+	SetStatusText(status_str, 0);
 }
 
 void CTestLogFrame::OnQuit(wxCommandEvent & WXUNUSED(event))
