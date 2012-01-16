@@ -30,6 +30,12 @@
 #include "CTestLogFrame.hpp"
 
 
+// PACKAGE_* and VERSION macros
+#if HAVE_CONFIG_H
+# include <config.h>
+#endif
+
+
 IMPLEMENT_APP(CTestMainApp)
 
 
@@ -39,7 +45,12 @@ IMPLEMENT_APP(CTestMainApp)
 
 bool CTestMainApp::OnInit()
 {
-	CTestLogFrame *logframe = new CTestLogFrame(_("CTest by N0NB"));
+	wxString framestr;
+
+	framestr.Append(_(PACKAGE_NAME));
+	framestr.Append(_(" by N0NB"));
+
+	CTestLogFrame *logframe = new CTestLogFrame(framestr);
 	logframe->Show(true);
 
 	return true;

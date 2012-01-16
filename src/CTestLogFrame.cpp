@@ -28,6 +28,12 @@
 #include "CTestLogFrame.hpp"
 
 
+// PACKAGE_* and VERSION macros
+#if HAVE_CONFIG_H
+# include <config.h>
+#endif
+
+
 // Main logging application frame class.  This is the main desktop
 // window where logging and user interaction takes place.
 //
@@ -61,12 +67,31 @@ void CTestLogFrame::OnQuit(wxCommandEvent & WXUNUSED(event))
 
 void CTestLogFrame::OnAbout(wxCommandEvent & WXUNUSED(event))
 {
-	wxMessageBox(_("CTest, a contest logging application for radio amateurs\n\nCTest comes with NO WARRANTY, express or implied.\nCTest is free software, see the file GPL-3 for details.\n\nCTest Copyright 2012 Nate Bargmann, N0NB."),
-		     _("About CTest"),
-		     wxOK | wxICON_INFORMATION, this);
+	wxString msgtxt;
+	wxString msgdlgstr;
+
+	// Build the message box text using Autoconf generated package macros
+	msgtxt.Append(_(PACKAGE_STRING));
+	msgtxt.Append(_(", a contest logging application for radio amateurs\n\n"));
+	msgtxt.Append(_(PACKAGE_NAME));
+	msgtxt.Append(_(" is free software, see the file COPYING for details.\n"));
+	msgtxt.Append(_(PACKAGE_NAME));
+	msgtxt.Append(_(" Copyright \u00A9 "));
+	msgtxt.Append(_(PACKAGE_COPYRIGHT_YEARS));
+	msgtxt.Append(_(" Nate Bargmann, N0NB.\n\n"));
+	msgtxt.Append(_("Report bugs to: "));
+	msgtxt.Append(_(PACKAGE_BUGREPORT));
+	msgtxt.Append(_("\nHomepage: "));
+	msgtxt.Append(_(PACKAGE_URL));
+
+	// Build the wxMessageBox title string
+	msgdlgstr.Append(_("About "));
+	msgdlgstr.Append(_(PACKAGE_NAME));
+
+	wxMessageBox(msgtxt, msgdlgstr, wxOK | wxICON_INFORMATION, this);
 }
 
 BEGIN_EVENT_TABLE(CTestLogFrame, wxFrame)
-	EVT_MENU(wxID_EXIT, CTestLogFrame::OnQuit)
-	EVT_MENU(wxID_ABOUT, CTestLogFrame::OnAbout)
+	EVT_MENU(wxID_EXIT,	CTestLogFrame::OnQuit)
+	EVT_MENU(wxID_ABOUT,	CTestLogFrame::OnAbout)
 END_EVENT_TABLE()

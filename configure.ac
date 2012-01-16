@@ -4,6 +4,9 @@
 AC_PREREQ([2.68])
 AC_INIT([CTest], [0.00~git], [n0nb@n0nb.us], [ctest], [http://www.n0nb.us/blog])
 
+# Local preprocessor variable substitutions
+AC_DEFINE([PACKAGE_COPYRIGHT_YEARS], ["2012"], [Copyright years])
+
 AM_INIT_AUTOMAKE
 
 dnl # AM_SILENT_RULES available on Automake 1.11 and later
@@ -43,7 +46,10 @@ AC_HEADER_STDBOOL
 
 # Checks for library functions.
 
-AC_CONFIG_FILES([Makefile
-src/Makefile])
+# Define then generate output files
+AC_CONFIG_FILES([
+Makefile
+src/Makefile
+])
 
 AC_OUTPUT
