@@ -1,0 +1,52 @@
+CTest--an amateur radio contest logging database and rig control app.
+
+Copyright (C) 2012 Nate Bargmann, N0NB, n0nb@n0nb.us
+
+0. What is it?
+==============
+
+CTest is a logging program for amateur radio operators interested in radio
+sport.  The User Interface draws much of its inspiration from the classic
+MS-DOS CT logger by Ken Wolff, K1EA.  Of course, many keystrokes used by CT
+are impractical in a modern Linux desktop enviroment so various
+substitutions are required.  However, the basic logging keystrokes are the
+same.
+
+The name CTest pays homage to the legendary CT.  However, no source code
+from CT or reverse engineering of CT object code exists in CTest.  CTest is
+free software, written from scratch in C++ using the wxWidgets graphical
+tookit, and licensed under the GNU Public License, GPL, version 3.0 (see the
+file COPYING). While cross-platform operation may be possible, the primary
+focus is on Linux. Testing and code contributions for running on other
+platforms is welcome.
+
+
+1. Motivation
+=============
+
+While many fine contest logging programs are available on other platforms,
+it is mostly impractical to get them to work satisfactorily under Wine.  The
+various Linux alternatives do not appeal to this author for various reasons.
+As a result I set about authoring an application that I would feel
+comfortable using during the various operating events.  A large part of that
+is the feeling of being in control of the program, therefore on-air
+transmissions should only occur in response to a specific keystroke (an
+auto-CQ with a configurable interval is the only planned exception).
+
+Schemes such as "Enter Sends Message" have at times left me asking for a
+repeat when some other program decided to transmit while I was trying to
+copy the other station's information.  Operators familiar with CT's use of
+the <Insert> and keypad '+' keys should feel comfortable with CTest.
+
+
+2. Use it!
+==========
+
+While the program is currently quite immature, it will only gain capabilities
+by usage and code contributions.
+
+Reports of all sorts are welcome at n0nb@n0nb.us until a mailing list or
+forum exists.
+
+
+73, de Nate, N0NB >>

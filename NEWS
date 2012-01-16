@@ -1,0 +1,8 @@
+CTest--an amateur radio contest logging database and rig control app.
+
+Copyright (C) 2012 Nate Bargmann, N0NB, n0nb@n0nb.us
+
+Version 0.00
+	Initial concept
+	Git VCS
+	GNU Autotools build management
