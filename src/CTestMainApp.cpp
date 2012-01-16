@@ -45,12 +45,12 @@ IMPLEMENT_APP(CTestMainApp)
 
 bool CTestMainApp::OnInit()
 {
-	wxString framestr;
+	wxString frame_str;
 
-	framestr.Append(_(PACKAGE_NAME));
-	framestr.Append(_(" by N0NB"));
+	frame_str.Append(_(PACKAGE_STRING));
+	frame_str.Append(_(" by N0NB"));
 
-	CTestLogFrame *logframe = new CTestLogFrame(framestr);
+	CTestLogFrame *logframe = new CTestLogFrame(frame_str);
 	logframe->Show(true);
 
 	return true;
