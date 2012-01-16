@@ -6,6 +6,9 @@ AC_INIT([CTest], [0.00~git], [n0nb@n0nb.us], [ctest], [http://www.n0nb.us/blog])
 
 AM_INIT_AUTOMAKE
 
+dnl # AM_SILENT_RULES available on Automake 1.11 and later
+AM_SILENT_RULES([yes])
+
 AC_CONFIG_SRCDIR([src/CTestMainApp.cpp])
 AC_CONFIG_HEADERS([config.h])
 
