@@ -72,28 +72,28 @@ void CTestLogFrame::OnQuit(wxCommandEvent & WXUNUSED(event))
 
 void CTestLogFrame::OnAbout(wxCommandEvent & WXUNUSED(event))
 {
-	wxString msg_txt;
-	wxString msg_dlg_str;
+	wxString about_txt;
+	wxString about_dlg_str;
 
 	// Build the message box text using Autoconf generated package macros
-	msg_txt.Append(_(PACKAGE_STRING));
-	msg_txt.Append(_(", a contest logging application for radio amateurs\n\n"));
-	msg_txt.Append(_(PACKAGE_NAME));
-	msg_txt.Append(_(" is free software, see the file COPYING for details.\n"));
-	msg_txt.Append(_(PACKAGE_NAME));
-	msg_txt.Append(_(" Copyright \u00A9 "));
-	msg_txt.Append(_(PACKAGE_COPYRIGHT_YEARS));
-	msg_txt.Append(_(" Nate Bargmann, N0NB.\n\n"));
-	msg_txt.Append(_("Report bugs to: "));
-	msg_txt.Append(_(PACKAGE_BUGREPORT));
-	msg_txt.Append(_("\nHomepage: "));
-	msg_txt.Append(_(PACKAGE_URL));
+	about_txt.Append(_(PACKAGE_STRING));
+	about_txt.Append(_(", a contest logging application for radio amateurs\n\n"));
+	about_txt.Append(_(PACKAGE_NAME));
+	about_txt.Append(_(" is free software, see the file COPYING for details.\n"));
+	about_txt.Append(_(PACKAGE_NAME));
+	about_txt.Append(_(" Copyright \u00A9 "));
+	about_txt.Append(_(PACKAGE_COPYRIGHT_YEARS));
+	about_txt.Append(_(" Nate Bargmann, N0NB.\n\n"));
+	about_txt.Append(_("Report bugs to: "));
+	about_txt.Append(_(PACKAGE_BUGREPORT));
+	about_txt.Append(_("\nHomepage: "));
+	about_txt.Append(_(PACKAGE_URL));
 
 	// Build the wxMessageBox title string
-	msg_dlg_str.Append(_("About "));
-	msg_dlg_str.Append(_(PACKAGE_NAME));
+	about_dlg_str.Append(_("About "));
+	about_dlg_str.Append(_(PACKAGE_NAME));
 
-	wxMessageBox(msg_txt, msg_dlg_str, wxOK | wxICON_INFORMATION, this);
+	wxMessageBox(about_txt, about_dlg_str, wxOK | wxICON_INFORMATION, this);
 }
 
 BEGIN_EVENT_TABLE(CTestLogFrame, wxFrame)
