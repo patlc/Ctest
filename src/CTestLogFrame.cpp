@@ -49,7 +49,7 @@ CTestLogFrame::CTestLogFrame(const wxString& title)
 	file = new wxMenu();
 	help = new wxMenu();
 
-	file->Append(wxID_EXIT, _("&Quit"));
+	file->Append(wxID_EXIT, _("E&xit\tAlt-X"));
 	help->Append(wxID_ABOUT, _("&About"));
 
 	menubar->Append(file, _("&File"));
@@ -67,7 +67,17 @@ CTestLogFrame::CTestLogFrame(const wxString& title)
 
 void CTestLogFrame::OnQuit(wxCommandEvent & WXUNUSED(event))
 {
-	Close(TRUE);
+	wxString quit_title;
+
+	quit_title.Append(_("Exit "));
+	quit_title.Append(_(PACKAGE_NAME));
+
+	// Create quit dialog on the stack--eases ShowModal() test
+	wxMessageDialog quit_dialog(this, _("Are you sure?"), quit_title,
+				    wxNO_DEFAULT | wxYES_NO | wxICON_QUESTION);
+
+	if (quit_dialog.ShowModal() == wxID_YES)
+		Close(TRUE);
 }
 
 void CTestLogFrame::OnAbout(wxCommandEvent & WXUNUSED(event))
