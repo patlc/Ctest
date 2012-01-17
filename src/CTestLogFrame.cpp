@@ -65,22 +65,36 @@ CTestLogFrame::CTestLogFrame(const wxString& title)
 	SetStatusText(status_str, 0);
 }
 
-void CTestLogFrame::OnQuit(wxCommandEvent & WXUNUSED(event))
+// Handles all close events from window controls and Alt-F4.
+// The Exit/Alt-X menu item eventually gets here as well.
+void CTestLogFrame::OnClose(wxCloseEvent& event)
 {
 	wxString quit_title;
 
 	quit_title.Append(_("Exit "));
 	quit_title.Append(_(PACKAGE_NAME));
 
-	// Create quit dialog on the stack--eases ShowModal() test
-	wxMessageDialog quit_dialog(this, _("Are you sure?"), quit_title,
-				    wxNO_DEFAULT | wxYES_NO | wxICON_QUESTION);
+	// Create quit dialog on the heap
+	wxMessageDialog *quit_dialog = new wxMessageDialog(this,
+	                _("Are you sure?"), quit_title,
+	                wxNO_DEFAULT | wxYES_NO | wxICON_QUESTION);
 
-	if (quit_dialog.ShowModal() == wxID_YES)
-		Close(TRUE);
+	int ret = quit_dialog->ShowModal();
+	quit_dialog->Destroy();
+
+	if (ret == wxID_YES)
+		Destroy();
+	else
+		event.Veto();
 }
 
-void CTestLogFrame::OnAbout(wxCommandEvent & WXUNUSED(event))
+// Actual exit dialog will be handled by CTestLogFrame::OnClose()
+void CTestLogFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
+{
+	Close(TRUE);
+}
+
+void CTestLogFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 {
 	wxString about_txt;
 	wxString about_dlg_str;
@@ -109,4 +123,5 @@ void CTestLogFrame::OnAbout(wxCommandEvent & WXUNUSED(event))
 BEGIN_EVENT_TABLE(CTestLogFrame, wxFrame)
 	EVT_MENU(wxID_EXIT,	CTestLogFrame::OnQuit)
 	EVT_MENU(wxID_ABOUT,	CTestLogFrame::OnAbout)
+	EVT_CLOSE(		CTestLogFrame::OnClose)
 END_EVENT_TABLE()

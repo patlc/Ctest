@@ -33,6 +33,10 @@ class CTestLogFrame : public wxFrame
 public:
 	CTestLogFrame(const wxString& title);
 
+	// Frame generated event
+	void OnClose(wxCloseEvent& event);
+
+	// MenuBar items generated events
 	void OnQuit(wxCommandEvent& event);
 	void OnAbout(wxCommandEvent& event);
 
