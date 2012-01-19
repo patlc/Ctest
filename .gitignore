@@ -19,5 +19,4 @@ src/.deps/
 src/Makefile
 src/Makefile.in
 src/ctest
-src/ctest-CTestLogFrame.o
-src/ctest-CTestMainApp.o
+src/*.o
