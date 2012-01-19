@@ -24,9 +24,12 @@
 #include <wx/menu.h>
 #include <wx/statusbr.h>
 #include <wx/msgdlg.h>
+#include <wx/sizer.h>
+#include <wx/panel.h>
 
 #include "CTestLogFrame.hpp"
-
+#include "CTestLogInputPanel.hpp"
+#include "CTestWindowID.hpp"
 
 // PACKAGE_* and VERSION macros
 #if HAVE_CONFIG_H
@@ -40,14 +43,18 @@
 // Let the windowing system determine the placement of the frame.
 // Set wxFrame size of 640x480 pixels.
 
-CTestLogFrame::CTestLogFrame(const wxString& title)
-	: wxFrame(NULL, wxID_ANY, title, wxPoint(-1, -1), wxSize(640, 480))
+CTestLogFrame::CTestLogFrame(wxWindowID id, const wxString& title)
+	: wxFrame(NULL, id, title, wxPoint(-1, -1), wxSize(640, 480))
 {
 	wxString status_str;
 
-	menubar = new wxMenuBar();
-	file = new wxMenu();
-	help = new wxMenu();
+	wxMenuBar	*menubar = new wxMenuBar();
+	wxMenu		*file = new wxMenu();
+	wxMenu		*help = new wxMenu();
+	CTestLogInputPanel *log_input = new CTestLogInputPanel(this, LOG_INPUT_ID);
+	wxBoxSizer *topSizer = new wxBoxSizer(wxVERTICAL);
+
+	topSizer->Add(log_input);
 
 	file->Append(wxID_EXIT, _("E&xit\tAlt-X"));
 	help->Append(wxID_ABOUT, _("&About"));
@@ -63,6 +70,10 @@ CTestLogFrame::CTestLogFrame(const wxString& title)
 	status_str.Append(_(PACKAGE_NAME));
 	status_str.Append(_("!"));
 	SetStatusText(status_str, 0);
+
+	SetSizer(topSizer);		// use the sizer for layout
+	topSizer->Fit(this);		// fit the dialog to the contents
+	topSizer->SetSizeHints(this);	// set hints to honor min size
 }
 
 // Handles all close events from window controls and Alt-F4.

@@ -31,7 +31,7 @@
 class CTestLogFrame : public wxFrame
 {
 public:
-	CTestLogFrame(const wxString& title);
+	CTestLogFrame(wxWindowID id, const wxString& title);
 
 	// Frame generated event
 	void OnClose(wxCloseEvent& event);
@@ -40,14 +40,9 @@ public:
 	void OnQuit(wxCommandEvent& event);
 	void OnAbout(wxCommandEvent& event);
 
-	wxMenuBar *menubar;
-	wxMenu *file;
-	wxMenu *help;
-
-	wxStatusBar *statusbar;
-
 private:
 	DECLARE_EVENT_TABLE()
 };
+
 
 #endif		// CTESTLOGFRAME_HPP

@@ -19,37 +19,15 @@
 //=============================================================================
 
 
-#include <wx/app.h>
-#include <wx/frame.h>
-#include <wx/string.h>
-
-#include "CTestMainApp.hpp"
-#include "CTestLogFrame.hpp"
-#include "CTestWindowID.hpp"
+#ifndef CTESTWINDOWID_HPP
+#define CTESTWINDOWID_HPP
 
 
-// PACKAGE_* and VERSION macros
-#if HAVE_CONFIG_H
-# include <config.h>
-#endif
+// Window ID values used throughout the program
+enum {
+	LOG_FRAME_ID	=	101,
+	LOG_INPUT_ID	=	102,
+};
 
 
-IMPLEMENT_APP(CTestMainApp)
-
-
-// CTest main event loop class
-//
-// Main program event loop implementation.
-
-bool CTestMainApp::OnInit()
-{
-	wxString frame_str;
-
-	frame_str.Append(_(PACKAGE_STRING));
-	frame_str.Append(_(" by N0NB"));
-
-	CTestLogFrame *log_frame = new CTestLogFrame(LOG_FRAME_ID, frame_str);
-	log_frame->Show(true);
-
-	return true;
-}
+#endif		// CTESTWINDOWID_HPP

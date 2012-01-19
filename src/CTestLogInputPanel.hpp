@@ -19,37 +19,14 @@
 //=============================================================================
 
 
-#include <wx/app.h>
-#include <wx/frame.h>
-#include <wx/string.h>
-
-#include "CTestMainApp.hpp"
-#include "CTestLogFrame.hpp"
-#include "CTestWindowID.hpp"
+#ifndef CTESTLOGINPUTPANEL_HPP
+#define CTESTLOGINPUTPANEL_HPP
 
 
-// PACKAGE_* and VERSION macros
-#if HAVE_CONFIG_H
-# include <config.h>
-#endif
-
-
-IMPLEMENT_APP(CTestMainApp)
-
-
-// CTest main event loop class
-//
-// Main program event loop implementation.
-
-bool CTestMainApp::OnInit()
+class CTestLogInputPanel : public wxPanel
 {
-	wxString frame_str;
+public:
+	CTestLogInputPanel(wxWindow* parent, wxWindowID id);
+};
 
-	frame_str.Append(_(PACKAGE_STRING));
-	frame_str.Append(_(" by N0NB"));
-
-	CTestLogFrame *log_frame = new CTestLogFrame(LOG_FRAME_ID, frame_str);
-	log_frame->Show(true);
-
-	return true;
-}
+#endif		// CTESTLOGINPUTPANEL_HPP
