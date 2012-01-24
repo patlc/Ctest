@@ -41,10 +41,10 @@
 // window where logging and user interaction takes place.
 //
 // Let the windowing system determine the placement of the frame.
-// Set wxFrame size of 640x480 pixels.
+// wxFrame size determined by the contained windows.
 
 CTestLogFrame::CTestLogFrame(wxWindowID id, const wxString& title)
-	: wxFrame(NULL, id, title, wxPoint(-1, -1), wxSize(640, 480))
+	: wxFrame(NULL, id, title)
 {
 	wxString status_str;
 
@@ -54,7 +54,11 @@ CTestLogFrame::CTestLogFrame(wxWindowID id, const wxString& title)
 	CTestLogInputPanel *log_input = new CTestLogInputPanel(this, LOG_INPUT_ID);
 	wxBoxSizer *topSizer = new wxBoxSizer(wxVERTICAL);
 
-	topSizer->Add(log_input);
+	// Place windows in order from top to bottom
+	// Grow in proportion to other contained windows
+	// Apply border to all sides
+	// Border is 5 pixels
+	topSizer->Add(log_input, 1, wxALL, 5);
 
 	file->Append(wxID_EXIT, _("E&xit\tAlt-X"));
 	help->Append(wxID_ABOUT, _("&About"));

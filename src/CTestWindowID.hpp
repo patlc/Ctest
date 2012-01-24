@@ -27,6 +27,12 @@
 enum {
 	LOG_FRAME_ID	=	101,
 	LOG_INPUT_ID	=	102,
+
+	// Log input panel fields
+	TIME_STR_ID	=	201,
+	CALL_INPUT_ID	=	202,
+	EXCH1_INPUT_ID	=	203,
+	EXCH2_INPUT_ID	=	204,
 };
 
 

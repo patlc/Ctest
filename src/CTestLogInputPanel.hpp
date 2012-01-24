@@ -27,6 +27,11 @@ class CTestLogInputPanel : public wxPanel
 {
 public:
 	CTestLogInputPanel(wxWindow* parent, wxWindowID id);
+
+	void OnChar(wxKeyEvent& event);
+
+private:
+//	DECLARE_EVENT_TABLE()
 };
 
 #endif		// CTESTLOGINPUTPANEL_HPP
