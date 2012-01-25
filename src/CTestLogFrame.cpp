@@ -25,7 +25,12 @@
 #include <wx/statusbr.h>
 #include <wx/msgdlg.h>
 #include <wx/sizer.h>
+
+// Needed for CTestLogInputPanel
 #include <wx/panel.h>
+#include <wx/textctrl.h>
+#include <wx/timer.h>
+#include <wx/stattext.h>
 
 #include "CTestLogFrame.hpp"
 #include "CTestLogInputPanel.hpp"

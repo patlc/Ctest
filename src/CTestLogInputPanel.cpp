@@ -26,6 +26,8 @@
 #include <wx/font.h>
 #include <wx/window.h>
 #include <wx/frame.h>
+#include <wx/datetime.h>
+#include <wx/timer.h>
 
 // Standard library
 #include <iostream>
@@ -35,7 +37,8 @@
 
 
 CTestLogInputPanel::CTestLogInputPanel(wxWindow* parent, wxWindowID id)
-	: wxPanel(parent, id)
+	: wxPanel(parent, id), clck_timer(this)
+
 {
 	int x, y;
 
@@ -59,24 +62,32 @@ CTestLogInputPanel::CTestLogInputPanel(wxWindow* parent, wxWindowID id)
 	wxStaticText *exch2_txt = new wxStaticText(this, wxID_ANY, _("Power"));
 
 	// Entry box row
-	wxStaticText *time_str = new wxStaticText(this, TIME_STR_ID, _("00:00:00z"));
+	time_str = new wxStaticText(this, TIME_STR_ID, _("00:00:00z"));
 
 	// For each of the entry boxes, calculate the width of the label
 	// above each box and set its width accordingly.
 	call_txt->GetSize(&x, &y);
-	wxTextCtrl *call_input = new wxTextCtrl(this, CALL_INPUT_ID, wxT(""),
+	call_input = new wxTextCtrl(this, CALL_INPUT_ID, wxT(""),
 	                                        wxDefaultPosition, wxSize(x, y + 6),
 	                                        wxTE_MULTILINE);
+
 	exch1_txt->GetSize(&x, &y);
-	wxTextCtrl *exch1_input = new wxTextCtrl(this, EXCH1_INPUT_ID, wxT(""),
+	exch1_input = new wxTextCtrl(this, EXCH1_INPUT_ID, wxT(""),
 	                                         wxDefaultPosition, wxSize(x, y + 6),
 	                                        wxTE_MULTILINE);
 	exch2_txt->GetSize(&x, &y);
-	wxTextCtrl *exch2_input = new wxTextCtrl(this, EXCH2_INPUT_ID, wxT(""),
+	exch2_input = new wxTextCtrl(this, EXCH2_INPUT_ID, wxT(""),
 	                                         wxDefaultPosition, wxSize(x, y + 6),
 	                                        wxTE_MULTILINE);
 
 	call_input->SetFocus();
+
+
+	// Timer for screen time display.  Update once per second.
+	clck_timer.Start(1000);
+
+	UpdateClock();
+
 
 	// Add each window into the first row of the grid.  Order matters!
 	flexGridSizer->Add(time_txt, 0, wxALIGN_CENTER_HORIZONTAL  | wxALIGN_BOTTOM, 0);
@@ -99,9 +110,25 @@ CTestLogInputPanel::CTestLogInputPanel(wxWindow* parent, wxWindowID id)
 }
 
 
+BEGIN_EVENT_TABLE(CTestLogInputPanel, wxPanel)
+	EVT_TIMER(wxID_ANY, CTestLogInputPanel::OnTimer)
+END_EVENT_TABLE()
+
+
+// Event implementations
 void CTestLogInputPanel::OnChar(wxKeyEvent& event)
 {
 	std::cerr << "Got keycode!\n";
 
 	event.Skip();
+}
+
+void CTestLogInputPanel::OnTimer(wxTimerEvent& WXUNUSED(event))
+{
+	UpdateClock();
+}
+
+void CTestLogInputPanel::UpdateClock()
+{
+	time_str->SetLabel(wxDateTime::Now().Format(_T("%Tz"), wxDateTime::UTC));
 }

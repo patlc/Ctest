@@ -28,10 +28,23 @@ class CTestLogInputPanel : public wxPanel
 public:
 	CTestLogInputPanel(wxWindow* parent, wxWindowID id);
 
+	void UpdateClock();
+
+	// event handlers
 	void OnChar(wxKeyEvent& event);
+	void OnTimer(wxTimerEvent& WXUNUSED(event));
 
 private:
-//	DECLARE_EVENT_TABLE()
+	// Variables needed to be visible to other functions
+	wxStaticText *time_str;
+
+	wxTextCtrl *call_input;
+	wxTextCtrl *exch1_input;
+	wxTextCtrl *exch2_input;
+
+	wxTimer clck_timer;
+
+	DECLARE_EVENT_TABLE()
 };
 
 #endif		// CTESTLOGINPUTPANEL_HPP
