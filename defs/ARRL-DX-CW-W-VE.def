@@ -1,0 +1,11 @@
+# ARRL DX CW definition W/VE
+FileVersion = "20120126"
+
+# Use ADIF 2.27 (or later) names "http://www.adif.org/adif227.htm#Contest ID"
+ContestID = "ARRL-DX-CW"
+
+# Exchange field names.  Extra spaces may be required to make entry
+# box large enough to show entered values.
+Exch1 =	"RST "
+Exch2 = "Power"
+
