@@ -32,11 +32,11 @@
 // Standard library
 #include <iostream>
 
-#include "CTestWindowID.hpp"
-#include "CTestLogInputPanel.hpp"
+#include "WindowID.hpp"
+#include "LogInputPanel.hpp"
 
 
-CTestLogInputPanel::CTestLogInputPanel(wxWindow* parent, wxWindowID id)
+LogInputPanel::LogInputPanel(wxWindow* parent, wxWindowID id)
 	: wxPanel(parent, id), clck_timer(this)
 
 {
@@ -105,30 +105,30 @@ CTestLogInputPanel::CTestLogInputPanel(wxWindow* parent, wxWindowID id)
 
 	// The call_input field requires that all keystrokes are examined.
 	call_input->Connect(CALL_INPUT_ID, wxEVT_CHAR,
-	                    wxCharEventHandler(CTestLogInputPanel::OnChar));
+	                    wxCharEventHandler(LogInputPanel::OnChar));
 
 }
 
 
-BEGIN_EVENT_TABLE(CTestLogInputPanel, wxPanel)
-	EVT_TIMER(wxID_ANY, CTestLogInputPanel::OnTimer)
+BEGIN_EVENT_TABLE(LogInputPanel, wxPanel)
+	EVT_TIMER(wxID_ANY, LogInputPanel::OnTimer)
 END_EVENT_TABLE()
 
 
 // Event implementations
-void CTestLogInputPanel::OnChar(wxKeyEvent& event)
+void LogInputPanel::OnChar(wxKeyEvent& event)
 {
 	std::cerr << "Got keycode!\n";
 
 	event.Skip();
 }
 
-void CTestLogInputPanel::OnTimer(wxTimerEvent& WXUNUSED(event))
+void LogInputPanel::OnTimer(wxTimerEvent& WXUNUSED(event))
 {
 	UpdateClock();
 }
 
-void CTestLogInputPanel::UpdateClock()
+void LogInputPanel::UpdateClock()
 {
 	time_str->SetLabel(wxDateTime::Now().Format(_T("%Tz"), wxDateTime::UTC));
 }

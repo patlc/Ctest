@@ -19,18 +19,18 @@
 //=============================================================================
 
 
-#ifndef CTESTMAINAPP_HPP
-#define CTESTMAINAPP_HPP
+#ifndef MAINAPP_HPP
+#define MAINAPP_HPP
 
 
 // CTest main event loop class
 //
-// Used by CTestMainApp.cpp
+// Used by MainApp.cpp
 
-class CTestMainApp : public wxApp
+class MainApp : public wxApp
 {
 public:
 	virtual bool OnInit();
 };
 
-#endif		// CTESTMAINAPP_HPP
+#endif		// MAINAPP_HPP

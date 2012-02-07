@@ -19,37 +19,30 @@
 //=============================================================================
 
 
-#include <wx/app.h>
-#include <wx/frame.h>
-#include <wx/string.h>
-
-#include "CTestMainApp.hpp"
-#include "CTestLogFrame.hpp"
-#include "CTestWindowID.hpp"
+#ifndef LOGFRAME_HPP
+#define LOGFRAME_HPP
 
 
-// PACKAGE_* and VERSION macros
-#if HAVE_CONFIG_H
-# include <config.h>
-#endif
-
-
-IMPLEMENT_APP(CTestMainApp)
-
-
-// CTest main event loop class
+// Main logging application frame class.  This is the main desktop
+// window where logging and user interaction takes place.
 //
-// Main program event loop implementation.
+// Used by LogFrame.cpp
 
-bool CTestMainApp::OnInit()
+class LogFrame : public wxFrame
 {
-	wxString frame_str;
+public:
+	LogFrame(wxWindowID id, const wxString& title);
 
-	frame_str.Append(_(PACKAGE_STRING));
-	frame_str.Append(_(" by N0NB"));
+	// Frame generated event
+	void OnClose(wxCloseEvent& event);
 
-	CTestLogFrame *log_frame = new CTestLogFrame(LOG_FRAME_ID, frame_str);
-	log_frame->Show(true);
+	// MenuBar items generated events
+	void OnQuit(wxCommandEvent& event);
+	void OnAbout(wxCommandEvent& event);
 
-	return true;
-}
+private:
+	DECLARE_EVENT_TABLE()
+};
+
+
+#endif		// LOGFRAME_HPP

@@ -12,7 +12,7 @@ AM_INIT_AUTOMAKE
 dnl # AM_SILENT_RULES available on Automake 1.11 and later
 AM_SILENT_RULES([yes])
 
-AC_CONFIG_SRCDIR([src/CTestMainApp.cpp])
+AC_CONFIG_SRCDIR([src/MainApp.cpp])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.

@@ -26,15 +26,15 @@
 #include <wx/msgdlg.h>
 #include <wx/sizer.h>
 
-// Needed for CTestLogInputPanel
+// Needed for LogInputPanel
 #include <wx/panel.h>
 #include <wx/textctrl.h>
 #include <wx/timer.h>
 #include <wx/stattext.h>
 
-#include "CTestLogFrame.hpp"
-#include "CTestLogInputPanel.hpp"
-#include "CTestWindowID.hpp"
+#include "LogFrame.hpp"
+#include "LogInputPanel.hpp"
+#include "WindowID.hpp"
 
 // PACKAGE_* and VERSION macros
 #if HAVE_CONFIG_H
@@ -46,9 +46,9 @@
 // window where logging and user interaction takes place.
 //
 // Let the windowing system determine the placement of the frame.
-// wxFrame size determined by the contained windows.
+// wxFrame size is determined by the contained windows.
 
-CTestLogFrame::CTestLogFrame(wxWindowID id, const wxString& title)
+LogFrame::LogFrame(wxWindowID id, const wxString& title)
 	: wxFrame(NULL, id, title)
 {
 	wxString status_str;
@@ -56,7 +56,7 @@ CTestLogFrame::CTestLogFrame(wxWindowID id, const wxString& title)
 	wxMenuBar	*menubar = new wxMenuBar();
 	wxMenu		*file = new wxMenu();
 	wxMenu		*help = new wxMenu();
-	CTestLogInputPanel *log_input = new CTestLogInputPanel(this, LOG_INPUT_ID);
+	LogInputPanel *log_input = new LogInputPanel(this, LOG_INPUT_ID);
 	wxBoxSizer *topSizer = new wxBoxSizer(wxVERTICAL);
 
 	// Place windows in order from top to bottom
@@ -87,7 +87,7 @@ CTestLogFrame::CTestLogFrame(wxWindowID id, const wxString& title)
 
 // Handles all close events from window controls and Alt-F4.
 // The Exit/Alt-X menu item eventually gets here as well.
-void CTestLogFrame::OnClose(wxCloseEvent& event)
+void LogFrame::OnClose(wxCloseEvent& event)
 {
 	wxString quit_title;
 
@@ -108,13 +108,13 @@ void CTestLogFrame::OnClose(wxCloseEvent& event)
 		event.Veto();
 }
 
-// Actual exit dialog will be handled by CTestLogFrame::OnClose()
-void CTestLogFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
+// Actual exit dialog will be handled by LogFrame::OnClose()
+void LogFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 {
 	Close(TRUE);
 }
 
-void CTestLogFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
+void LogFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 {
 	wxString about_txt;
 	wxString about_dlg_str;
@@ -140,8 +140,8 @@ void CTestLogFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 	wxMessageBox(about_txt, about_dlg_str, wxOK | wxICON_INFORMATION, this);
 }
 
-BEGIN_EVENT_TABLE(CTestLogFrame, wxFrame)
-	EVT_MENU(wxID_EXIT,	CTestLogFrame::OnQuit)
-	EVT_MENU(wxID_ABOUT,	CTestLogFrame::OnAbout)
-	EVT_CLOSE(		CTestLogFrame::OnClose)
+BEGIN_EVENT_TABLE(LogFrame, wxFrame)
+	EVT_MENU(wxID_EXIT,	LogFrame::OnQuit)
+	EVT_MENU(wxID_ABOUT,	LogFrame::OnAbout)
+	EVT_CLOSE(		LogFrame::OnClose)
 END_EVENT_TABLE()

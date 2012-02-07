@@ -2,4 +2,4 @@
 
 SUBDIRS = src
 
-EXTRA_DIST = doc/CTestOverview.odt
+EXTRA_DIST = doc/Overview.odt

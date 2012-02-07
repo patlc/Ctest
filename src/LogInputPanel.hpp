@@ -19,21 +19,32 @@
 //=============================================================================
 
 
-#ifndef CTESTWINDOWID_HPP
-#define CTESTWINDOWID_HPP
+#ifndef LOGINPUTPANEL_HPP
+#define LOGINPUTPANEL_HPP
 
 
-// Window ID values used throughout the program
-enum {
-	LOG_FRAME_ID	=	101,
-	LOG_INPUT_ID	=	102,
+class LogInputPanel : public wxPanel
+{
+public:
+	LogInputPanel(wxWindow* parent, wxWindowID id);
 
-	// Log input panel fields
-	TIME_STR_ID	=	201,
-	CALL_INPUT_ID	=	202,
-	EXCH1_INPUT_ID	=	203,
-	EXCH2_INPUT_ID	=	204,
+	void UpdateClock();
+
+	// event handlers
+	void OnChar(wxKeyEvent& event);
+	void OnTimer(wxTimerEvent& WXUNUSED(event));
+
+private:
+	// Variables needed to be visible to other functions
+	wxStaticText *time_str;
+
+	wxTextCtrl *call_input;
+	wxTextCtrl *exch1_input;
+	wxTextCtrl *exch2_input;
+
+	wxTimer clck_timer;
+
+	DECLARE_EVENT_TABLE()
 };
 
-
-#endif		// CTESTWINDOWID_HPP
+#endif		// LOGINPUTPANEL_HPP
