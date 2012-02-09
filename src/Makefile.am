@@ -1,5 +1,6 @@
 # src level Makefile.am
 
+# install to /usr/local/bin by default
 bin_PROGRAMS = ctest
 
 ctest_SOURCES = MainApp.cpp LogFrame.cpp LogInputPanel.cpp \

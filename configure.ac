@@ -7,7 +7,7 @@ AC_INIT([CTest], [0.00~git], [n0nb@n0nb.us], [ctest], [http://www.n0nb.us/blog])
 # Local preprocessor variable substitutions
 AC_DEFINE([PACKAGE_COPYRIGHT_YEARS], ["2012"], [Copyright years])
 
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([-Wall])
 
 dnl # AM_SILENT_RULES available on Automake 1.11 and later
 AM_SILENT_RULES([yes])
@@ -52,6 +52,7 @@ Makefile
 src/Makefile
 defs/Makefile
 include/Makefile
+doc/Makefile
 ])
 
 AC_OUTPUT
