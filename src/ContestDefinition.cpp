@@ -45,7 +45,7 @@ wxString ContestDefinition::GetContestID()
 
 // Exch1 is often the RS(T) but may be named otherwise
 // such as Field Day class, ARRL SS S/N, etc.
-void ContestDefinition::SetExch2(wxString ex1)
+void ContestDefinition::SetExch1(wxString ex1)
 {
 	Exch1 = ex1;
 }
@@ -56,12 +56,13 @@ wxString ContestDefinition::GetExch1()
 }
 
 // Exch2 could be a zone or section/state/power, ARRL SS Prec, etc.
-void ContestDefinition::SetExch2(wxString ex3)
+void ContestDefinition::SetExch2(wxString ex2)
 {
 	Exch2 = ex2;
 }
 
-wxString ContestDefinition::GetContestID()
+wxString ContestDefinition::GetExch2()
 {
 	return Exch2;
 }
+

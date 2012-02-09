@@ -1,5 +1,5 @@
 # Top level Makefile.am
 
-SUBDIRS = src
+SUBDIRS = include src defs
 
-EXTRA_DIST = doc/Overview.odt
+DIST_SUBDIRS =  $(SUBDIRS)

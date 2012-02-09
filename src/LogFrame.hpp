@@ -37,6 +37,7 @@ public:
 	void OnClose(wxCloseEvent& event);
 
 	// MenuBar items generated events
+	void OnNew(wxCommandEvent& event);
 	void OnQuit(wxCommandEvent& event);
 	void OnAbout(wxCommandEvent& event);
 

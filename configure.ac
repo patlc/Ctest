@@ -13,7 +13,7 @@ dnl # AM_SILENT_RULES available on Automake 1.11 and later
 AM_SILENT_RULES([yes])
 
 AC_CONFIG_SRCDIR([src/MainApp.cpp])
-AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_HEADERS([include/config.h])
 
 # Checks for programs.
 AC_PROG_CXX
@@ -50,6 +50,8 @@ AC_HEADER_STDBOOL
 AC_CONFIG_FILES([
 Makefile
 src/Makefile
+defs/Makefile
+include/Makefile
 ])
 
 AC_OUTPUT

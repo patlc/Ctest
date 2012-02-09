@@ -25,6 +25,8 @@
 #include <wx/statusbr.h>
 #include <wx/msgdlg.h>
 #include <wx/sizer.h>
+#include <wx/filedlg.h>
+#include <wx/textfile.h>
 
 // Needed for LogInputPanel
 #include <wx/panel.h>
@@ -34,6 +36,7 @@
 
 #include "LogFrame.hpp"
 #include "LogInputPanel.hpp"
+#include "ContestDefinition.hpp"
 #include "WindowID.hpp"
 
 // PACKAGE_* and VERSION macros
@@ -46,12 +49,15 @@
 // window where logging and user interaction takes place.
 //
 // Let the windowing system determine the placement of the frame.
-// wxFrame size is determined by the contained windows.
+// wxFrame size is determined by the contained windows but initialize it
+// at 640x480 until the panels are added.
 
 LogFrame::LogFrame(wxWindowID id, const wxString& title)
-	: wxFrame(NULL, id, title)
+	: wxFrame(NULL, id, title, wxPoint(-1, -1), wxSize(640, 480))
 {
 	wxString status_str;
+
+	ContestDefinition *ct_def = new ContestDefinition();
 
 	wxMenuBar	*menubar = new wxMenuBar();
 	wxMenu		*file = new wxMenu();
@@ -65,6 +71,7 @@ LogFrame::LogFrame(wxWindowID id, const wxString& title)
 	// Border is 5 pixels
 	topSizer->Add(log_input, 1, wxALL, 5);
 
+	file->Append(wxID_NEW, _("New Contest"));
 	file->Append(wxID_EXIT, _("E&xit\tAlt-X"));
 	help->Append(wxID_ABOUT, _("&About"));
 
@@ -83,6 +90,41 @@ LogFrame::LogFrame(wxWindowID id, const wxString& title)
 	SetSizer(topSizer);		// use the sizer for layout
 	topSizer->Fit(this);		// fit the dialog to the contents
 	topSizer->SetSizeHints(this);	// set hints to honor min size
+}
+
+
+// Static event handler table
+BEGIN_EVENT_TABLE(LogFrame, wxFrame)
+	EVT_MENU(wxID_NEW,	LogFrame::OnNew)
+	EVT_MENU(wxID_EXIT,	LogFrame::OnQuit)
+	EVT_MENU(wxID_ABOUT,	LogFrame::OnAbout)
+	EVT_CLOSE(		LogFrame::OnClose)
+END_EVENT_TABLE()
+
+
+// New contest--loads contest definition config file
+// From http://wiki.wxwidgets.org/Reading_text_from_a_file
+void LogFrame::OnNew(wxCommandEvent& WXUNUSED(event))
+{
+	wxString        def_file;
+	wxString	def_path = _("/home/nate/git/ctest/defs");
+	wxFileDialog    fdlog(this, _("Open Contest Definition"),
+	                      _(DEFS_DIR), _(""),
+	                      _("DEF files (*.def)|*.def"),
+	                      wxFD_FILE_MUST_EXIST);
+
+	// show file dialog and get the path to
+	// the file that was selected.
+	if(fdlog.ShowModal() != wxID_OK) return;
+	def_file.Clear();
+	def_file = fdlog.GetPath();
+
+//	wxString        str;
+
+	// open the file
+//	wxTextFile      tfile;
+//	tfile.Open(def_file);
+
 }
 
 // Handles all close events from window controls and Alt-F4.
@@ -139,9 +181,3 @@ void LogFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 
 	wxMessageBox(about_txt, about_dlg_str, wxOK | wxICON_INFORMATION, this);
 }
-
-BEGIN_EVENT_TABLE(LogFrame, wxFrame)
-	EVT_MENU(wxID_EXIT,	LogFrame::OnQuit)
-	EVT_MENU(wxID_ABOUT,	LogFrame::OnAbout)
-	EVT_CLOSE(		LogFrame::OnClose)
-END_EVENT_TABLE()
