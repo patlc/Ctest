@@ -30,16 +30,23 @@
 class ContestDefinition
 {
 public:
+	void SetFileVersion(wxString ver);
+	wxString const GetFileVersion() const;
+
 	void SetContestID(wxString id);
-	wxString GetContestID();
+	wxString const GetContestID() const;
 
 	void SetExch1(wxString ex1);
-	wxString GetExch1();
+	wxString const GetExch1() const;
 
 	void SetExch2(wxString ex2);
-	wxString GetExch2();
+	wxString const GetExch2() const;
+
+	// Opens passed file name of contest definition
+	void build_def(wxString def_file);
 
 private:
+	wxString FileVersion;
 	wxString ContestID;
 	wxString Exch1;
 	wxString Exch2;

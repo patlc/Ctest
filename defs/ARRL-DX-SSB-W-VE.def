@@ -10,14 +10,14 @@
 # Values are contained in double quotes ("") and may contain
 # letters, digits, '-', '_', or ' ' in any combination or quantity
 
-# ARRL DX CW definition W/VE
-FileVersion = "20120126"
+# ARRL DX SSB definition W/VE
+FileVersion = "20120210"
 
 # Use ADIF 2.27 (or later) names "http://www.adif.org/adif227.htm#Contest ID"
-ContestID = "ARRL-DX-CW"
+ContestID = "ARRL-DX-SSB"
 
 # Exchange field names.  Extra spaces may be required to make entry
 # box large enough to show entered values--use space characters, not tabs!
-Exch1 =	"RST "
+Exch1 = "RS "
 Exch2 = "Power"
 

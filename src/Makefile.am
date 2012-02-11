@@ -9,4 +9,6 @@ ctest_SOURCES = MainApp.cpp LogFrame.cpp LogInputPanel.cpp \
 ctest_LDADD = @LIBS@
 ctest_CXXFLAGS = @CXXFLAGS@
 
-AM_CPPFLAGS = -DDEFS_DIR=\"$(pkgdatadir)/defs\"
+# Set headers include path for VPATH builds
+# Set default installation path for contest definitions used in LogFrame::OnNew()
+ctest_CPPFLAGS = -I\$(top_srcdir)/include -DDEFS_DIR=\"$(pkgdatadir)/defs\"

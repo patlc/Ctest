@@ -28,10 +28,11 @@
 //
 // Used by LogFrame.cpp
 
-class LogFrame : public wxFrame
+class LogFrame : public wxFrame, public ContestDefinition
 {
 public:
 	LogFrame(wxWindowID id, const wxString& title);
+	~LogFrame();
 
 	// Frame generated event
 	void OnClose(wxCloseEvent& event);
@@ -42,6 +43,7 @@ public:
 	void OnAbout(wxCommandEvent& event);
 
 private:
+	ContestDefinition *ct_def;
 	DECLARE_EVENT_TABLE()
 };
 

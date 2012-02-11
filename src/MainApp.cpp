@@ -24,6 +24,7 @@
 #include <wx/string.h>
 
 #include "MainApp.hpp"
+#include "ContestDefinition.hpp"
 #include "LogFrame.hpp"
 #include "WindowID.hpp"
 

@@ -16,6 +16,8 @@ missing
 stamp-h1
 *.tar.gz
 
+bld/
+dbg/
 src/.deps/
 src/Makefile
 src/Makefile.in

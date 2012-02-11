@@ -34,9 +34,9 @@
 #include <wx/timer.h>
 #include <wx/stattext.h>
 
+#include "ContestDefinition.hpp"
 #include "LogFrame.hpp"
 #include "LogInputPanel.hpp"
-#include "ContestDefinition.hpp"
 #include "WindowID.hpp"
 
 // PACKAGE_* and VERSION macros
@@ -57,7 +57,7 @@ LogFrame::LogFrame(wxWindowID id, const wxString& title)
 {
 	wxString status_str;
 
-	ContestDefinition *ct_def = new ContestDefinition();
+	ct_def = new ContestDefinition();
 
 	wxMenuBar	*menubar = new wxMenuBar();
 	wxMenu		*file = new wxMenu();
@@ -92,6 +92,11 @@ LogFrame::LogFrame(wxWindowID id, const wxString& title)
 	topSizer->SetSizeHints(this);	// set hints to honor min size
 }
 
+LogFrame::~LogFrame()
+{
+	delete this->ct_def;
+	this->ct_def = NULL;
+}
 
 // Static event handler table
 BEGIN_EVENT_TABLE(LogFrame, wxFrame)
@@ -107,7 +112,11 @@ END_EVENT_TABLE()
 void LogFrame::OnNew(wxCommandEvent& WXUNUSED(event))
 {
 	wxString        def_file;
-	wxString	def_path = _("/home/nate/git/ctest/defs");
+//	extern ContestDefinition ct_def;
+
+	// DEFS_DIR is defined in ./Makefile.am AM_CPPFLAGS and
+	// is comprised of an Autoconf path variable pointing to
+	// the configured installation path for .def files.
 	wxFileDialog    fdlog(this, _("Open Contest Definition"),
 	                      _(DEFS_DIR), _(""),
 	                      _("DEF files (*.def)|*.def"),
@@ -116,15 +125,11 @@ void LogFrame::OnNew(wxCommandEvent& WXUNUSED(event))
 	// show file dialog and get the path to
 	// the file that was selected.
 	if(fdlog.ShowModal() != wxID_OK) return;
+
 	def_file.Clear();
 	def_file = fdlog.GetPath();
 
-//	wxString        str;
-
-	// open the file
-//	wxTextFile      tfile;
-//	tfile.Open(def_file);
-
+	this->ct_def->build_def(def_file);
 }
 
 // Handles all close events from window controls and Alt-F4.
