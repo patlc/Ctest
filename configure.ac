@@ -9,7 +9,7 @@ AC_DEFINE([PACKAGE_COPYRIGHT_YEARS], ["2012"], [Copyright years])
 
 AM_INIT_AUTOMAKE([-Wall])
 
-dnl # AM_SILENT_RULES available on Automake 1.11 and later
+# AM_SILENT_RULES available on Automake 1.11 and later
 AM_SILENT_RULES([yes])
 
 AC_CONFIG_SRCDIR([src/MainApp.cpp])
@@ -56,3 +56,16 @@ doc/Makefile
 ])
 
 AC_OUTPUT
+
+echo \
+"----------------------------------------------------------------------
+
+ ${PACKAGE_NAME} Version ${PACKAGE_VERSION} configuration:
+
+ Prefix		${prefix}
+ Compiler	${CXX}
+ CXXFLAGS	${CXXFLAGS}
+ CPPFLAGS	${CPPFLAGS}
+ LIBS		${LIBS}
+
+-----------------------------------------------------------------------"
