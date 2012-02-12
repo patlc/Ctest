@@ -37,6 +37,7 @@ public:
 private:
 	// Variables needed to be visible to other functions
 	wxStaticText *qnr_str;
+	wxStaticText *band_str;
 	wxStaticText *time_str;
 
 	wxTextCtrl *call_input;
