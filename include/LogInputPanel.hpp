@@ -36,11 +36,15 @@ public:
 
 private:
 	// Variables needed to be visible to other functions
+	wxStaticText *qnr_str;
 	wxStaticText *time_str;
 
 	wxTextCtrl *call_input;
 	wxTextCtrl *exch1_input;
 	wxTextCtrl *exch2_input;
+	wxTextCtrl *exch3_input;
+	wxTextCtrl *exch4_input;
+	wxTextCtrl *exch5_input;
 
 	wxTimer clck_timer;
 
