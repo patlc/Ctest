@@ -1,0 +1,74 @@
+CTest Internals
+===============
+Nate Bargmann <n0nb@n0nb.us>
+
+:numbered!:
+[abstract]
+
+A summary of CTest program structure and operation.  Each class is described
+in the order of occurance and its class dependencies.  Each class is
+declared in a header file (.hpp) of its name and the implementation is
+contained in the corresponding .cpp file.
+
+
+Class description & Program Flow
+--------------------------------
+
+
+Introduction
+~~~~~~~~~~~~
+
+CTest is a logging database and radio control application for amateur radio
+operators involved in amateur radio contesting, a.k.a. radio-sport.   CTest
+is written in C++ using the 'wxWidgets' library.  As many capabilities of
+the 'wxWidgets' library are used as possible.  Neither the standard C++
+library nor its 'Standard Template Library' (STL) are used directly unless
+noted.
+
+While the target audience of CTest is users of the Linux platform,
+cross-platform operation may be considered in the future.
+
+
+MainApp
+~~~~~~~
+
+The main program entry class.
+
+NOTE: that unlike standard C++ applications, 'wxWidgets' applications do not
+define a +main()+ function directly.  Instead the +wxApp+ class  method
++OnInit()+ is overridden by the application and the library provides the
++IMPLEMENT_APP()+ macro which creates the program's +main()+ function at
+compile time.
+
+The implementation depends on the +LogFrame+ class declaration.  The
+overriding +OnInit()+ method calls the  +LogFrame+ class' +Show()+ method
+which displays the program's initial window to the user.
+
+
+LogFrame
+~~~~~~~~
+
+The main frame (window in usual parlance as in 'wxWidgets' a ``window''
+refers to all display elements) holds the main UI for the program.
+Employing a menu and status bar along with various panels, the +LogFrame+
+class receives logging input and displays various event data. +LogFrame+
+inherits from +wxFrame+ and +ContestDefinition+.  It also handles many
+events that occur through the program's lifetime.
+
+The implementation depends on +LogInputPanel+ and +ContestDefinition+.
+
+
+LogInputPanel
+~~~~~~~~~~~~~
+
+This class is contained in +topSizer+ in +LogFrame+ and accepts logging input
+from the keyboard while displaying the next QSO entry number, UTC time, and
+operating band.
+
+
+ContestDefinition
+~~~~~~~~~~~~~~~~~
+
+This data container class processes input from a chosen contest definition
+file and sets its variables based on data contained in the file.  It then
+provides this data to other parts of the program upon request.
