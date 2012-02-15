@@ -18,6 +18,9 @@ stamp-h1
 
 bld/
 dbg/
+doc/*.html
+doc/*.pdf
+doc/*.xml
 src/.deps/
 src/Makefile
 src/Makefile.in

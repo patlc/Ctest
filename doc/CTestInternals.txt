@@ -4,6 +4,8 @@ Nate Bargmann <n0nb@n0nb.us>
 
 :numbered!:
 [abstract]
+Abstract
+--------
 
 A summary of CTest program structure and operation.  Each class is described
 in the order of occurance and its class dependencies.  Each class is
@@ -20,7 +22,7 @@ Introduction
 
 CTest is a logging database and radio control application for amateur radio
 operators involved in amateur radio contesting, a.k.a. radio-sport.   CTest
-is written in C++ using the 'wxWidgets' library.  As many capabilities of
+is written in C\++ using the 'wxWidgets' library.  As many capabilities of
 the 'wxWidgets' library are used as possible.  Neither the standard C++
 library nor its 'Standard Template Library' (STL) are used directly unless
 noted.
@@ -61,9 +63,9 @@ The implementation depends on +LogInputPanel+ and +ContestDefinition+.
 LogInputPanel
 ~~~~~~~~~~~~~
 
-This class is contained in +topSizer+ in +LogFrame+ and accepts logging input
-from the keyboard while displaying the next QSO entry number, UTC time, and
-operating band.
+This class' instance is contained in +topSizer+ in +LogFrame+ and accepts
+logging input from the keyboard while displaying the next QSO entry number, UTC
+time, and operating band.
 
 
 ContestDefinition
@@ -72,3 +74,4 @@ ContestDefinition
 This data container class processes input from a chosen contest definition
 file and sets its variables based on data contained in the file.  It then
 provides this data to other parts of the program upon request.
+

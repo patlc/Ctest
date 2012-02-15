@@ -1,8 +1,20 @@
 # Documentation Makefile.am
 
-# install to /usr/local/share/doc/ctest by default
-docsdir = $(docdir)
+internals = CTestInternals
 
-docs_DATA = CTestOverview.odt
+internals_src = $(internals).txt
 
-EXTRA_DIST = $(DATA)
+EXTRA_DIST = $(internals_src) $(internals).html $(internals).pdf
+
+.PHONY: doc clean-local
+
+doc: $(internals).html $(internals).pdf
+
+clean-local:
+	rm -f $(builddir)/$(internals).html $(builddir)/$(internals).pdf
+
+$(internals).html: $(internals_src)
+	asciidoc -b html -o $(builddir)/$(internals).html $(srcdir)/$(internals_src)
+
+$(internals).pdf: $(internals_src)
+	a2x -f pdf -D $(builddir) $(srcdir)/$(internals_src)
