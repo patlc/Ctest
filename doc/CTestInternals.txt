@@ -1,31 +1,31 @@
 CTest Internals
 ===============
 Nate Bargmann <n0nb@n0nb.us>
-
+:toc:
 :numbered!:
+:website: http://www.n0nb.us
+
 [abstract]
-Abstract
---------
+About this document
+-------------------
 
 A summary of CTest program structure and operation.  Each class is described
 in the order of occurance and its class dependencies.  Each class is
-declared in a header file (.hpp) of its name and the implementation is
-contained in the corresponding .cpp file.
+declared in a header file (+.hpp+) of its name and the implementation is
+contained in the corresponding +.cpp+ file.
 
 
 Class description & Program Flow
 --------------------------------
 
-
-Introduction
-~~~~~~~~~~~~
-
 CTest is a logging database and radio control application for amateur radio
-operators involved in amateur radio contesting, a.k.a. radio-sport.   CTest
-is written in C\++ using the 'wxWidgets' library.  As many capabilities of
-the 'wxWidgets' library are used as possible.  Neither the standard C++
-library nor its 'Standard Template Library' (STL) are used directly unless
-noted.
+operators involved in amateur radio contesting, a.k.a.
+http://en.wikipedia.org/wiki/Radiosport[Radiosport].   CTest is written in
+http://www.cplusplus.com/[C\+\+] using the
+http://www.wxwidgets.org/['wxWidgets'] library.  As many capabilities of the
+'wxWidgets' library are used as possible.  Neither the standard C++ library nor
+its http://www.cplusplus.com/reference/stl/['Standard Template Library' (STL)]
+are used directly unless noted.
 
 While the target audience of CTest is users of the Linux platform,
 cross-platform operation may be considered in the future.
@@ -74,4 +74,28 @@ ContestDefinition
 This data container class processes input from a chosen contest definition
 file and sets its variables based on data contained in the file.  It then
 provides this data to other parts of the program upon request.
+
+<<<
+[appendix]
+License
+-------
+CTest--an amateur radio contest logging database and rig control app.
+
+Copyright (C) 2012 Nate Bargmann, N0NB, n0nb@n0nb.us
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the 'GNU General Public License' as published by
+the 'Free Software Foundation', either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+// vim: set syntax=asciidoc:
 
