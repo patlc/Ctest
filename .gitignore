@@ -1,5 +1,6 @@
 # ignore the following files
 *~
+*.swp
 .bak/
 Makefile
 Makefile.in
@@ -22,7 +23,5 @@ doc/*.html
 doc/*.pdf
 doc/*.xml
 src/.deps/
-src/Makefile
-src/Makefile.in
 src/ctest
 src/*.o
