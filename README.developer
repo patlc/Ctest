@@ -1,0 +1,68 @@
+CTest--an amateur radio contest logging database and rig control app.
+
+Copyright (C) 2012 Nate Bargmann, N0NB, n0nb@n0nb.us
+
+
+0. Prerequisites
+================
+
+CTest is written in C++ with the wxWidgets library version 2.8.12 (is this
+too new?).  Compilation has been tested with the GNU C++ compiler, g++
+version 4.6.2.
+
+Building the documentation requires AsciiDoc 8.6 to generate the HTML file
+and recommended DocBook tools to generate the PDF file.
+
+
+1. Building from Git
+====================
+
+CTest is built using the GNU Autotools suite.  The following packages are
+used to initialize the build system (Debian package names):
+
+Tool			Version
+-------------------------------
+autoconf		2.68
+automake		1.11.2
+
+The autoreconf command is used to generate the configure script.  From the
+CTest main directory issue:
+
+$ autoreconf -is
+
+This will include needed files as symbolic links and generate the configure
+script.
+
+
+2. Parallel build tree
+======================
+
+The GNU build system allows placing the generated files in another directory
+which is useful to have a "debug" tree and a normal tree.  This can be done
+by creating two directories under the main CTest directory:
+
+$ mkdir bld
+$ mkdir dbg
+
+For example, after changing to the dbg directory ('cd dbg'), execute the
+configure script created in step 1 above:
+
+$ ../configure --disable-silent-rules CPPFLAGS="-DDEBUG"
+
+which activates maximum verbosity during compilation and tells the
+preprocessor to define "DEBUG" which will activate a few code blocks for
+some simple debugging output to the console.
+
+Now 'make' and 'sudo make install' can be executed normally.
+
+Likewise, running 'configure' from the 'bld' directory with no options
+results in a default build.  This is a good way to test that compiling
+without the DEBUG blocks won't break anything.
+
+
+3. Installation
+===============
+
+The default installation prefix is '/usr/local' with the 'ctest' binary
+placed in '/usr/local/bin' and the definition files placed in
+'/usr/local/share/ctest/defs'.  Documentation is not installed.

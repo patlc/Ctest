@@ -42,11 +42,25 @@ the <Insert> and keypad '+' keys should feel comfortable with CTest.
 2. Use it!
 ==========
 
-While the program is currently quite immature, it will only gain capabilities
-by usage and code contributions.
+While the program is currently quite immature (only displaying a few
+prototype windows at the moment), it will only gain capabilities by usage
+and code contributions.
 
-Reports of all sorts are welcome at n0nb@n0nb.us until a mailing list or
-forum exists.
+
+3. Project info
+===============
+
+A project has been created on SourceForge:
+
+https://sourceforge.net/p/ctestlogger/
+
+also a development mailing list:
+
+https://lists.sourceforge.net/lists/listinfo/ctestlogger-developer
+
+and forum:
+
+http://sourceforge.net/apps/phpbb/ctestlogger/
 
 
 73, de Nate, N0NB >>
