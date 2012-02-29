@@ -4,7 +4,7 @@
 bin_PROGRAMS = ctest
 
 ctest_SOURCES = MainApp.cpp LogFrame.cpp LogInputPanel.cpp \
-	ContestDefinition.cpp
+	ContestDefinition.cpp NewContestDialog.cpp
 
 ctest_LDADD = @LIBS@
 ctest_CXXFLAGS = @CXXFLAGS@

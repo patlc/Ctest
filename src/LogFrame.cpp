@@ -38,6 +38,7 @@
 #include "LogFrame.hpp"
 #include "LogInputPanel.hpp"
 #include "WindowID.hpp"
+#include "NewContestDialog.hpp"
 
 // PACKAGE_* and VERSION macros
 #if HAVE_CONFIG_H
@@ -111,25 +112,13 @@ END_EVENT_TABLE()
 // From http://wiki.wxwidgets.org/Reading_text_from_a_file
 void LogFrame::OnNew(wxCommandEvent& WXUNUSED(event))
 {
-	wxString        def_file;
-//	extern ContestDefinition ct_def;
+//	this->ct_def->build_def(def_file);
 
-	// DEFS_DIR is defined in ./Makefile.am AM_CPPFLAGS and
-	// is comprised of an Autoconf path variable pointing to
-	// the configured installation path for .def files.
-	wxFileDialog    fdlog(this, _("Open Contest Definition"),
-	                      _(DEFS_DIR), _(""),
-	                      _("DEF files (*.def)|*.def"),
-	                      wxFD_FILE_MUST_EXIST);
+	NewContestDialog *ncd = new NewContestDialog(this,
+	                                                  wxID_ANY,
+	                                                  _("New Contest Configuration"));
 
-	// show file dialog and get the path to
-	// the file that was selected.
-	if(fdlog.ShowModal() != wxID_OK) return;
-
-	def_file.Clear();
-	def_file = fdlog.GetPath();
-
-	this->ct_def->build_def(def_file);
+	ncd->ShowModal();
 }
 
 // Handles all close events from window controls and Alt-F4.
